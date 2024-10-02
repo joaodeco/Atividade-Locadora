@@ -1,22 +1,15 @@
-const express = require ('express');
-const app = express();
-const porta = 3000;
-const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const userRoutes = require('./routes/userRoutes');
+import e from "express";
+import "dotenv/config";
+import user_router from "./routes/user-route.js";
+import aluguel_router from "./routes/aluguelRoute.js";
+import movieRoute from "./routes/movieRoute.js";
 
-app.use(express.json());
+const app = e();
 
-dotenv.config();
-connectDB();
+app.use(e.json());
 
-app.use('/api', userRoutes);
+app.use("/user", user_router);
+app.use("/movie", movieRoute );
+app.use("/aluguel", aluguel_router);
 
-app.listen(porta, ()=>{
-    console.log(`O servidor está rodando em http://localhost:${porta}`);
-});
-
-app.use((err, req, res, next) => {
-    console.error(err.stack)
-    res.status(500).send('Algo deu errado')
-})
+app.listen(process.env.API_PORT, () => console.log("Servidor pet auth executando na porta " + process.env.API_PORT));
