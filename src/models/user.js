@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
+        ENUM: ADM, USU,
         required: true
     },
     permissionType: {
