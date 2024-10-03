@@ -1,10 +1,42 @@
 const mongoose = require('mongoose');
+const { trace } = require('../routes/userRoutes');
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    name: {
+        type: String,
+        required: true,
+    },
+    birthday_date: {
+        type: Date,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    permissionType: {
+        type: String,
+        required: true
+    },
+    telefone: {
+        type: Array, String,
+        required: true
+    },
+    endereço: {
+        type: String,
+        required: true
+    },
+    numeroCasa:{
+        type: String,
+        required: true
+    }
+    
 });
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = User
